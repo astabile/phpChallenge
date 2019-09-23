@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+{% block title %}App:blog:user{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="blog-header">
+        <h1 class="blog-title">User</h1>
+        <p class="lead blog-description">A brief look into the user.</p>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+            <div class="blog-post">
+                <h2 class="blog-post-title">{{ user.username|raw }}</h2>
+                <p>Email: {{ user.email|raw }}</p>
+                <ul>
+                    {% if user.getTwitter %}
+                        <li>{{ user.twitter }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,12 +1,14 @@
 # Steps
 Tools previously installed:
 - XAMPP: https://www.apachefriends.org/es/download.html
-- Composer: https://getcomposer.org/
-- Git bash: https://git-scm.com/downloads (optional)
+- Composer: https://getcomposer.org
+- Yarn: https://yarnpkg.com/lang/en/docs/install
+- Git bash: https://git-scm.com/downloads
 
 Install Symfony and create project:
 ```
 composer create-project -s beta symfony/skeleton blog
+cd blog
 ```
 
 Install Doctrine and libraries:

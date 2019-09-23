@@ -23,6 +23,7 @@ class Fixtures extends Fixture
         $entry = new Entry();
         $entry
             ->setTitle('First blog post example')
+            ->setSlug('first-blog-post-example')
             ->setContent('Lorem Ipsum is simply dummy text of the printing and typesetting industry.')
             ->setUser($user);
         $manager->persist($entry);

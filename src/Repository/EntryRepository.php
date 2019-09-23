@@ -19,6 +19,40 @@ class EntryRepository extends ServiceEntityRepository
         parent::__construct($registry, Entry::class);
     }
 
+    /**
+     * @param int $page
+     * @param int $limit
+     *
+     * @return array
+     */
+    public function getAllEntries($page = 1, $limit = 3)
+    {
+        $entityManager = $this->getEntityManager();
+        $queryBuilder = $entityManager->createQueryBuilder();
+        $queryBuilder
+            ->select('e')
+            ->from('App:Entry', 'e')
+            ->orderBy('e.id', 'DESC')
+            ->setFirstResult($limit * ($page - 1))
+            ->setMaxResults($limit);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * @return array
+     */
+    public function getEntryCount()
+    {
+        $entityManager = $this->getEntityManager();
+        $queryBuilder = $entityManager->createQueryBuilder();
+        $queryBuilder
+            ->select('count(e)')
+            ->from('App:Entry', 'e');
+
+        return $queryBuilder->getQuery()->getSingleScalarResult();
+    }
+
     // /**
     //  * @return Entry[] Returns an array of Entry objects
     //  */
