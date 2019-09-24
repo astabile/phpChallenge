@@ -1,0 +1,10 @@
+insert into user (username, email, password, twitter) values ('msaket0', 'ttoward0@hatena.ne.jp', 'y4vkRrFb', 'lectus');
+insert into user (username, email, password, twitter) values ('rdowner1', 'iogborne1@blinklist.com', 'ufKRl6RycvIy', 'quis');
+insert into user (username, email, password, twitter) values ('vlosano2', 'fgutch2@marriott.com', 'JZQA8tJx', 'sed');
+insert into user (username, email, password, twitter) values ('mbeecroft3', 'nrothon3@epa.gov', 'qKNCH8PvT', 'nulla');
+insert into user (username, email, password, twitter) values ('meddowes4', 'kgerran4@upenn.edu', '0Uq0tv22p', 'tortor');
+insert into user (username, email, password, twitter) values ('sleer5', 'rsibary5@furl.net', 'IzKtwLI', 'iaculis');
+insert into user (username, email, password, twitter) values ('valejandre6', 'fcarding6@aol.com', '6oFdX5Rh1', 'erat');
+insert into user (username, email, password, twitter) values ('ibranca7', 'tbarthropp7@nydailynews.com', '7g86lhbCer4', 'volutpat');
+insert into user (username, email, password, twitter) values ('cdelloyd8', 'dskeech8@photobucket.com', 'tklWkHIXsglI', 'fusce');
+insert into user (username, email, password, twitter) values ('pfraczkiewicz9', 'hjermyn9@springer.com', 'HYxjXITo', 'vel');

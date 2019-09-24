@@ -1,22 +1,34 @@
 {% extends "base.html.twig" %}
-{% block title %}App:blog:user{% endblock %}
+{% block title %}{{ user.username|raw }}{% endblock %}
 {% block body %}
 <div class="container">
     <div class="blog-header">
-        <h1 class="blog-title">User</h1>
-        <p class="lead blog-description">A brief look into the user.</p>
+        <h1 class="blog-title">A brief look into the user.</h1>
     </div>
     <div class="row">
+        <div class="col-sm-12 blog-main">
+            <div class="blog-post">
+                <span class="glyphicon glyphicon-user"></span>
+                <span>{{ user.username|raw }}</span><br />
+                <span class="glyphicon glyphicon-envelope"></span>
+                <span>{{ user.email|raw }}</span><br />                
+                {% if user.getTwitter %}
+                    <p class="glyphicon glyphicon-comment"></p>
+                    <span>{{ user.twitter|raw }}</span>
+                {% endif %}               
+            </div>
+        </div>
+
+        <!-- User entries container -->
         <div class="col-sm-8 blog-main">
             <div class="blog-post">
-                <h2 class="blog-post-title">{{ user.username|raw }}</h2>
-                <p>Email: {{ user.email|raw }}</p>
-                <ul>
-                    {% if user.getTwitter %}
-                        <li>{{ user.twitter }}</li>
-                    {% endif %}
-                </ul>
+                <span>A short text message..</span><br />
             </div>
+        </div>
+
+        <!-- Twittwer container-->
+        <div class="col-sm-4">
+            <a class="twitter-timeline" href="https://twitter.com/AlejandroStbil1">Tweets by AlejandroStbil1</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
     </div>
 </div>

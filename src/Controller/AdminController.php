@@ -82,6 +82,10 @@ class AdminController extends AbstractController
         $user = $this->userRepository->findOneByUsername($this->getUser()->getUserName());
         $entry->setUser($user);
 
+        //Generate slug from title 
+        $slug = $entry->generateSeoURL($entry->getTitle(), 50);
+        $entry->setSlug($slug);
+
         $form = $this->createForm(EntryFormType::class, $entry);
         $form->handleRequest($request);
 
@@ -113,12 +117,38 @@ class AdminController extends AbstractController
         $entries = [];
 
         if ($user) {
-            $entries = $this->entryRepository->findByAuthor($user);
+            $entries = $this->entryRepository->findByUser($user);
         }
 
         return $this->render('admin/entries.html.twig', [
             'entries' => $entries
         ]);
+    }
+
+    /**
+     * @Route("/edit-entry/{entryId}", name="admin_edit_entry")
+     *
+     * @param $entryId
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function editEntryAction($entryId)
+    {
+        $entry = $this->entryRepository->findOneById($entryId);
+        $user = $this->userRepository->findOneByUsername($this->getUser()->getUserName());
+
+        if (!$entry || $user !== $entry->getUser()) {
+            $this->addFlash('error', 'Unable to edit entry.');
+
+            return $this->redirectToRoute('admin_entries');
+        }
+
+        $this->entityManager->refresh($entry);
+        $this->entityManager->flush();
+
+        $this->addFlash('success', 'Entry was edited.');
+
+        return $this->redirectToRoute('admin_entries');
     }
 
     /**

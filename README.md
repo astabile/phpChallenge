@@ -15,6 +15,7 @@ Install Doctrine and libraries:
 ```
 composer require symfony/orm-pack
 composer require symfony /maker-bundle --dev
+composer require symfony/asset
 composer require annotations
 composer require validator
 composer require template

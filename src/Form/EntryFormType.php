@@ -39,7 +39,7 @@ class EntryFormType extends AbstractType
                 SubmitType::class,
                 [
                     'attr' => ['class' => 'form-control btn-primary pull-right'],
-                    'label' => 'Create!'
+                    'label' => 'Create'
                 ]
             );
     }

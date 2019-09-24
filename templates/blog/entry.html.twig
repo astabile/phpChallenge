@@ -1,22 +1,20 @@
 {% extends "base.html.twig" %}
-{% block title %}App:blog:entry{% endblock %}
+{% block title %}{{ entry.title }}{% endblock %}
 {% block body %}
 <div class="container">
  <div class="blog-header">
-     <h1 class="blog-title">Blog tutorial</h1>
-     <p class="lead blog-description">A basic description of the blog, built in Symfony, styled in Bootstrap 3, secured by Auth0.</p>
+     <h1 class="blog-title">{{ entry.title }}</h1>
  </div>
  <div class="row">
-     <div class="col-sm-8 blog-main">
+     <div class="col-sm-12 blog-main">
          <div class="blog-post">
-             <h2 class="blog-post-title">{{ entry.title }}</h2>
              <p class="blog-post-meta">
                 {{ entry.creationDate|date('F j, Y') }} by <a href="{{ path('user', {'name': entry.user.username|url_encode }) }}">
                     {{ entry.user.username }}
                 </a>
             </p>
              <h3>Content:</h3>
-             <p>{{ entry.content|raw }}</p>
+             <cite>{{ entry.content|raw }}</cite>
          </div>
      </div>
  </div>

@@ -3,7 +3,8 @@
  */
  body {
     font-family: Georgia, "Times New Roman", Times, serif;
-    color: #555;
+    color: rgba(255,255,255,0.7);
+    background: radial-gradient(#373740, #0a0a0c) rgba(199, 199, 210, 0.94);
 }
 
 h1, .h1,
@@ -15,7 +16,11 @@ h6, .h6 {
     margin-top: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
-    color: #333;
+    color: rgba(255,255,255,0.7);
+}
+
+blockquote {
+    border-left: 2px solid #c1c1c1;
 }
 
 /*
@@ -50,6 +55,34 @@ h6, .h6 {
     text-decoration: none;
 }
 
+.navbar-nav > li > a {
+    color: #d6d6d6 !important;
+}
+.navbar-nav > li > a:hover {
+    color: inherit !important
+}
+.navbar-fixed-top {
+    background: rgba(255,255,255,0.1);
+    border-color: #545454;
+}
+.navbar-nav > .active > a {
+    background-color: transparent !important;
+}
+
+/* Table */
+.table-striped {
+    margin-top: 10px;
+    border: 1px solid lightgrey;
+}
+
+/* Rows */
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #504f4f;
+}
+.table-striped > thead > tr > th {
+    border-bottom: 0px transparent;
+}
+
 /* Active state gets a caret at the bottom */
 .blog-nav .active {
   color: #fff;
@@ -72,13 +105,13 @@ h6, .h6 {
  * Blog name and description
  */
 .blog-header {
-    padding-top: 20px;
+    padding-top: 30px;
     padding-bottom: 20px;
 }
 .blog-title {
     margin-top: 30px;
     margin-bottom: 0;
-    font-size: 60px;
+    font-size: 40px;
     font-weight: normal;
 }
 .blog-description {
@@ -90,8 +123,9 @@ h6, .h6 {
  * Main column and sidebar layout
  */
 .blog-main {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.5;
+    text-align: justify;
 }
 
 /* Sidebar modules for boxing content */
@@ -130,11 +164,11 @@ h6, .h6 {
 }
 .blog-post-title {
     margin-bottom: 5px;
-    font-size: 40px;
+    font-size: 25px;
 }
 .blog-post-meta {
     margin-bottom: 20px;
-    color: #999;
+    color: rgba(255,255,255,0.7);
 }
 
 /*

@@ -32,7 +32,7 @@ class EntryRepository extends ServiceEntityRepository
         $queryBuilder
             ->select('e')
             ->from('App:Entry', 'e')
-            ->orderBy('e.id', 'DESC')
+            ->orderBy('e.creationDate', 'DESC')
             ->setFirstResult($limit * ($page - 1))
             ->setMaxResults($limit);
 
