@@ -3,7 +3,7 @@
 {% block body %}
 <div class="container">
     <div class="blog-header">
-        <h1 class="blog-title">A brief look into the user.</h1>
+        <h1 class="blog-title">About</h1>
     </div>
     <div class="row">
         <div class="col-sm-12 blog-main">
@@ -22,14 +22,45 @@
         <!-- User entries container -->
         <div class="col-sm-8 blog-main">
             <div class="blog-post">
-                <span>A short text message..</span><br />
+                {% for entry in entries %}
+                    {% set paragraphs = entry.content|split('</p>') %}
+                    {% set firstParagraph = paragraphs|first ~ '</p>' %}
+                    <div class="blog-post">
+                        <h2 class="blog-post-title">
+                            <a href="{{ path('entry', {'slug': entry.slug}) }}">
+                                {{ entry.title }}
+                            </a>
+                        </h2>
+                        <p class="blog-post-meta">
+                            {{ entry.getCreationDate|date('F j, Y') }} by
+                            {% if entry.user %}
+                                <a href="{{ path('user', {'name': entry.user.username|url_encode }) }}">
+                                    {{ entry.user.username }}
+                                </a>
+                            {% else %}
+                                Unknown User
+                            {% endif %}
+                        </p>
+                        <blockquote>{{ firstParagraph|raw }}</blockquote>
+                        <a href="{{ path('entry', {'slug': entry.slug}) }}">Read more</a>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info" role="alert">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                        You have no entries.
+                    </div>
+                {% endfor %}
+                <button type="button" class="btn btn-info" onclick="history.go(-1);">Back</button>
             </div>
         </div>
 
         <!-- Twittwer container-->
-        <div class="col-sm-4">
-            <a class="twitter-timeline" href="https://twitter.com/AlejandroStbil1">Tweets by AlejandroStbil1</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div>
+        {% if user.twitter %}
+            <div class="col-sm-4">
+                <a class="twitter-timeline" data-height="500" href="https://twitter.com/{{user.twitter}}"></a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

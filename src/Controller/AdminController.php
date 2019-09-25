@@ -78,16 +78,16 @@ class AdminController extends AbstractController
     public function createEntryAction(Request $request)
     {
         $entry = new Entry();
-
+    
+        $form = $this->createForm(EntryFormType::class, $entry);
+        $form->handleRequest($request);
+        
         $user = $this->userRepository->findOneByUsername($this->getUser()->getUserName());
         $entry->setUser($user);
 
         //Generate slug from title 
-        $slug = $entry->generateSeoURL($entry->getTitle(), 50);
+        $slug = $this->generateSeoURL($entry->getTitle(), 50);
         $entry->setSlug($slug);
-
-        $form = $this->createForm(EntryFormType::class, $entry);
-        $form->handleRequest($request);
 
         // Check is valid
         if ($form->isSubmitted() && $form->isValid()) {
@@ -129,13 +129,16 @@ class AdminController extends AbstractController
      * @Route("/edit-entry/{entryId}", name="admin_edit_entry")
      *
      * @param $entryId
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * 
+     * @param Request $request
      */
-    public function editEntryAction($entryId)
+    public function editEntryAction($entryId, Request $request)
     {
         $entry = $this->entryRepository->findOneById($entryId);
         $user = $this->userRepository->findOneByUsername($this->getUser()->getUserName());
+
+        $form = $this->createForm(EntryFormType::class, $entry);
+        $form->handleRequest($request);
 
         if (!$entry || $user !== $entry->getUser()) {
             $this->addFlash('error', 'Unable to edit entry.');
@@ -143,12 +146,18 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_entries');
         }
 
-        $this->entityManager->refresh($entry);
-        $this->entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->merge($entry);
+            $this->entityManager->flush();
 
-        $this->addFlash('success', 'Entry was edited.');
+            $this->addFlash('success', 'Entry was edited.');
 
-        return $this->redirectToRoute('admin_entries');
+            return $this->redirectToRoute('admin_entries');
+        }
+
+        return $this->render('admin/entry_form.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**
@@ -175,5 +184,39 @@ class AdminController extends AbstractController
         $this->addFlash('success', 'Entry was removed.');
 
         return $this->redirectToRoute('admin_entries');
+    }
+
+    /**
+     * @param string $string
+     *
+     * @param int $wordLimit
+     *
+     * @return string friendly SEO URL
+     */
+    private function generateSeoURL($string, $wordLimit = 0){
+        $separator = '-';
+        
+        if($wordLimit != 0){
+            $wordArr = explode(' ', $string);
+            $string = implode(' ', array_slice($wordArr, 0, $wordLimit));
+        }
+    
+        $quoteSeparator = preg_quote($separator, '#');
+    
+        $trans = array(
+            '&.+?;'                    => '',
+            '[^\w\d _-]'            => '',
+            '\s+'                    => $separator,
+            '('.$quoteSeparator.')+'=> $separator
+        );
+    
+        $string = strip_tags($string);
+        foreach ($trans as $key => $val){
+            $string = preg_replace('#'.$key.'#i'.('UTF8_ENABLED' ? 'u' : ''), $val, $string);
+        }
+    
+        $string = strtolower($string);
+    
+        return uniqid() . '-' . trim(trim($string, $separator));
     }
 }

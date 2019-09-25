@@ -39,7 +39,7 @@ class EntryFormType extends AbstractType
                 SubmitType::class,
                 [
                     'attr' => ['class' => 'form-control btn-primary pull-right'],
-                    'label' => 'Create'
+                    'label' => 'Apply'
                 ]
             );
     }
@@ -59,6 +59,6 @@ class EntryFormType extends AbstractType
      */
     public function getName()
     {
-        return 'author_form';
+        return 'entry_form';
     }
 }

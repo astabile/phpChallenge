@@ -57,7 +57,7 @@ class UserFormType extends AbstractType
                 SubmitType::class,
                 [
                     'attr' => ['class' => 'form-control btn-primary pull-right'],
-                    'label' => 'Become an user!'
+                    'label' => 'Apply'
                 ]
             );
     }

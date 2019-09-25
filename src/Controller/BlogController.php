@@ -43,8 +43,14 @@ class BlogController extends AbstractController
             $page = $request->get('page');
         }
 
+        $entries = $this->entryRepository->getAllEntries($page, self::POST_LIMIT);
+        foreach($entries as $entry)
+        {
+            $entry->setContent(strlen($entry->getContent()) > 500 ? substr($entry->getContent(),0,500)." ..." : $entry->getContent());
+        }
+
         return $this->render('blog/entries.html.twig', [
-            'entries' => $this->entryRepository->getAllEntries($page, self::POST_LIMIT),
+            'entries' => $entries,
             'totalEntries' => $this->entryRepository->getEntryCount(),
             'page' => $page,
             'entryLimit' => self::POST_LIMIT
@@ -81,8 +87,16 @@ class BlogController extends AbstractController
             return $this->redirectToRoute('entries');
         }
 
+        $entries = $this->entryRepository->findByUser($user);
+
+        foreach($entries as $entry)
+        {
+            $entry->setContent(strlen($entry->getContent()) > 500 ? substr($entry->getContent(),0,500)." ..." : $entry->getContent());
+        }
+        
         return $this->render('blog/user.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'entries' => $entries
         ]);
     }
 }

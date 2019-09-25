@@ -1,0 +1,25 @@
+- C:\Windows\System32\drivers\etc\hosts
+	127.0.0.1			astabile.jobsitychallenge.com
+
+- C:\xampp\apache\conf\httpd.conf
+	Include conf/extra/httpd-vhosts.conf
+	LoadModule rewrite_module modules/mod_rewrite.so
+
+- C:\xampp\apache\conf\extra\httpd-vhosts.conf
+	<VirtualHost *:8000>  
+		ServerName astabile.jobsitychallenge.com
+		DocumentRoot "/var/www/jobsitychallenge.com/astabile"
+		<Directory "/var/www/jobsitychallenge.com/astabile">    
+			Options Indexes Multiviews FollowSymLinks
+			AllowOverride All    
+			Order allow,deny    
+			Allow from all  
+		</Directory>
+	</VirtualHost>
+
+- Allowed Callback URLs (auth0 application)
+	http://127.0.0.1:8000/auth0/callback, 
+	http://astabile.jobsitychallenge.com:8000/auth0/callback
+	
+- Application URL running
+	http://astabile.jobsitychallenge.com:8000/

@@ -4,7 +4,7 @@
  body {
     font-family: Georgia, "Times New Roman", Times, serif;
     color: rgba(255,255,255,0.7);
-    background: radial-gradient(#373740, #0a0a0c) rgba(199, 199, 210, 0.94);
+    background: radial-gradient(#3d3a42, #2d2d38) rgba(193, 193, 224, 0.94);
 }
 
 h1, .h1,
@@ -73,6 +73,7 @@ blockquote {
 .table-striped {
     margin-top: 10px;
     border: 1px solid lightgrey;
+    border-collapse: inherit;
 }
 
 /* Rows */

@@ -30,9 +30,9 @@
                     <a href="{{ path('entry', {'slug': entry.slug}) }}">Read more</a>
                 </div>
             {% else %}
-                <div class="alert alert-danger" role="alert">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    You have no entries. Please log in and create an entry.
+                <div class="alert alert-info" role="alert">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    You have no entries.
                 </div>
             {% endfor %}
             {% set canPrevious = page > 1 %}

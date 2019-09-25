@@ -82,14 +82,14 @@ class CheckIsUserListener
         if (!$user && $this->session->get('pending_user_is_user')) {
             $this->session->getFlashBag()->add(
                 'warning',
-                'Your user access is being set up. Please try again shortly.'
+                'Please try again shortly.'
             );
 
             $route = $this->router->generate('homepage');
         } else {
             $this->session->getFlashBag()->add(
                 'warning',
-                'You cannot access the user section until you become an user. Please complete the form below to proceed.'
+                'You cannot access to this section until you become an user. Please complete the form below to proceed.'
             );
         }
 
