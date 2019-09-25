@@ -8,13 +8,12 @@
         <!-- <link type="text/css" rel="stylesheet" href="https://developer.twitter.com/etc/designs/common-twitter/clientlib-u12-data-protection-notice.min.css"> -->
         <link rel="stylesheet" href="{{ asset('build/global.css') }}" />
         <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+        <script src="{{ asset('build/app.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     {% endblock %}
 </head>
 <body>
 {% include 'nav_bar.html.twig' %}
 {% block body %}{% endblock %}
-{% block javascripts %}
-    <script src="{{ asset('build/app.js') }}"></script>
-{% endblock %}
 </body>
 </html>

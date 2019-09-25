@@ -193,7 +193,8 @@ class AdminController extends AbstractController
      *
      * @return string friendly SEO URL
      */
-    private function generateSeoURL($string, $wordLimit = 0){
+    private function generateSeoURL($string, $wordLimit = 0)
+    {
         $separator = '-';
         
         if($wordLimit != 0){

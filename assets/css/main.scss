@@ -185,3 +185,51 @@ blockquote {
 .blog-footer p:last-child {
     margin-bottom: 0;
 }
+
+/*
+ * Twitter
+ */
+
+ .twitter{
+    max-width: 400px;
+    max-height: 600px;
+    overflow-y: scroll;
+    background-color: #fff;
+    border-radius: 5px;
+    font: normal normal 14px/1.4 Helvetica,Roboto,"Segoe UI",Calibri,sans-serif;
+    color: #292F33;
+}
+
+.twitter h1{
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 24px;
+    color: #292F33;
+    padding: 10px;
+    display: inline-block!important;
+    max-width: 100%;
+}
+
+.twitter span{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #657786;
+}
+
+.tweet{
+    padding: 10px;
+    border-top: 1px solid rgba(15,70,100,.12);
+}
+
+.tweet a{
+    padding-left: 230px;
+    font-size: 12px;
+}
+
+.tweet blockquote{
+    margin-top: 6px;
+    margin-left: 0;
+    font-size: 12px;
+    line-height: 18px;
+}

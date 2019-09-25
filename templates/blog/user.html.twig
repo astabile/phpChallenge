@@ -54,13 +54,68 @@
             </div>
         </div>
 
-        <!-- Twittwer container-->
+        <!-- Twittwer container -->
         {% if user.twitter %}
             <div class="col-sm-4">
-                <a class="twitter-timeline" data-height="500" href="https://twitter.com/{{user.twitter}}"></a>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <!-- <a class="twitter-timeline" data-height="500" href="https://twitter.com/{{user.twitter}}"></a> -->
+                <!-- <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+                
+                <div class="twitter">
+                    <h1>Tweets</h1><span>by @{{user.twitter}}</span>
+                    <div id="twitter">
+                    </div>
+                </div>
             </div>
         {% endif %}
     </div>
 </div>
+
+<script>
+    $(document).ready(function() 
+    {
+        refreshTweets();
+    });
+
+    function refreshTweets(){
+        $("#twitter").empty();
+
+        $.ajax({
+            type: "POST",
+            url: `${this.document.URL}/getTwitters`,
+            success: function (result) {
+                for(var i = 0; i < result.length; i++){
+                    var data = result[i];
+                    var button = "";
+                    {% if (app.user) and (app.user.username == user.username) %}
+                        button = `<a href="javascript:${!data.hidden ? `hideTweet('${data.id}')` : `showTweet('${data.id}')`}">${!data.hidden ? 'Hide' : 'Show'}</a>`;
+                    {% endif %}
+
+                    $("#twitter").append(`<div class="tweet"><blockquote>${data.text}</blockquote>${button}</div>`)
+                }
+            }
+        });
+    }
+
+    function hideTweet(id){
+        $.ajax({
+            type: "POST",
+            url: "/user/addTweet",
+            data: { id: id},
+            success: function (result) {
+            refreshTweets();
+            }
+        });
+    }
+    
+    function showTweet(id){
+        $.ajax({
+            type: "POST",
+            url: "/user/deleteTweet",
+            data: { id: id},
+            success: function (result) {
+                refreshTweets();
+            }
+        });
+    }
+</script>
 {% endblock %}

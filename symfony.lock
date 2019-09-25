@@ -1,4 +1,7 @@
 {
+    "abraham/twitteroauth": {
+        "version": "1.0.1"
+    },
     "clue/stream-filter": {
         "version": "v1.4.1"
     },
