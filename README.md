@@ -20,6 +20,7 @@ composer require annotations
 composer require validator
 composer require template
 composer require security-bundle
+composer require abraham/twitteroauth
 ```
 
 Install Symfony’s web server:
@@ -41,6 +42,12 @@ php bin/console make:controller
 > BlogController
 ```
 
+Create Admin controller (Use entity manager and repositories for the entities to retrieve data):
+```
+php bin/console make:controller  
+> AdminController
+```
+
 Create User entity:
 ```
 php bin/console make:entity  
@@ -53,12 +60,18 @@ php bin/console make:entity
 Entry
 ```
 
+Create Twitter entity:
+```
+php bin/console make:entity  
+> Twitter
+```
+
 Create tables:
 ```
 php bin/console doctrine:schema:update --force  
 ```
 
-Install doctrine fixtures for populate tables:
+Install doctrine fixtures for populate tables (Optional):
 ```
 composer require --dev doctrine/doctrine-fixtures-bundle
 ```
@@ -66,4 +79,55 @@ composer require --dev doctrine/doctrine-fixtures-bundle
 Run the fixture with some dummy data (DataFixtures):
 ```
 php bin/console doctrine:fixtures:load 	
+```
+
+Install HWIOAuth Bundle and several third-party libraries:
+```
+composer require hwi/oauth-bundle:"^0.6.3" 
+composer require php-http/guzzle6-adapter:"^1.1" 
+composer require php-http/httplug-bundle:"^1.13"
+composer update
+```
+
+Adding required on composer.json:
+```
+"hwi/oauth-bundle": "^0.6.3",
+"php-http/guzzle6-adapter": "^1.1",
+"php-http/httplug-bundle": "^1.13",
+```
+
+Install Symfony's Webpack Encore:
+```
+composer require webpack-encore
+```
+
+Install sass-loader and node-sass dependencies:
+```
+yarn add sass-loader node-sass --dev
+```
+
+Compile .css and .js files into assets:
+```
+yarn run encore dev --watch
+```
+
+Install jQuery:
+```
+yarn add jquery --dev
+```
+
+Install bootstrap-sass:
+```
+yarn add bootstrap-sass --dev
+```
+
+Install TwitterOAuth library:
+```
+composer require abraham/twitteroauth
+```
+
+Clear the caché and run the application:
+```
+php bin/console cache:clear
+php bin/console server:run
 ```

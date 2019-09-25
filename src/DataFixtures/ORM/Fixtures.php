@@ -4,6 +4,7 @@ namespace App\DataFixtures\ORM;
 
 use App\Entity\User;
 use App\Entity\Entry;
+use App\Entity\Twitter;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -27,6 +28,13 @@ class Fixtures extends Fixture
             ->setContent('Lorem Ipsum is simply dummy text of the printing and typesetting industry.')
             ->setUser($user);
         $manager->persist($entry);
+
+        $twitter = new Twitter();
+        $twitter
+            ->setUserId(3)
+            ->setTwitterId('1175453384800952320');
+        $manager->persist($twitter);
+        
         $manager->flush();
     }
 }

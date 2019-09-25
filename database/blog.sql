@@ -43,3 +43,13 @@ CREATE TABLE `entry` (
   `content` varchar(2000) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Estructura de tabla para la tabla `twitter`
+--
+
+CREATE TABLE `twitter` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `twitter_id` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
