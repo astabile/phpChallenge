@@ -13,9 +13,10 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 --
--- Base de datos: `bloguu`
+-- Base de datos: `blog`
 --
 
+CREATE database blog character set utf8;
 -- --------------------------------------------------------
 
 --
@@ -23,7 +24,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -36,7 +37,7 @@ CREATE TABLE `user` (
 --
 
 CREATE TABLE `entry` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `user_id` int(11) DEFAULT NULL,
   `creation_date` datetime NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -49,7 +50,7 @@ CREATE TABLE `entry` (
 --
 
 CREATE TABLE `twitter` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `user_id` int(11) NOT NULL,
   `twitter_id` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
