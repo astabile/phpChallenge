@@ -3,20 +3,20 @@ Create a web app that will have two parts. The first part involves entries (simi
 from registered users (functionality to view, create, and edit entries). The second part is to be
 able to see a single user's entries and tweets (from Twitter).
 
-# Tools previously installed:
+# Tools previously installed
 - XAMPP: https://www.apachefriends.org/es/download.html
 - Composer: https://getcomposer.org
 - Yarn: https://yarnpkg.com/lang/en/docs/install
 - Git bash: https://git-scm.com/downloads
 
 # Code steps
-Clonate project and access to the repo:
+Clonate project and access to the repository:
 ```
 git clone https://github.com/astabile/phpChallenge.git blog
 cd blog
 ```
 
-Update libraries
+Update libraries:
 ```
 composer update
 ```
@@ -31,9 +31,13 @@ Compile .css and .js files into assets:
 yarn run encore dev --watch
 ```
 
-Clear the caché and run the application:
+Clear the cache:
 ```
 php bin/console cache:clear
+```
+
+Run the application:
+```
 php bin/console server:run
 ```
 
