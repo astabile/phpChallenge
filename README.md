@@ -12,7 +12,7 @@ able to see a single user's entries and tweets (from Twitter).
 # Code steps
 Clonate project and access to the repo:
 ```
-git clone https://github.com/astabile/phpChallenge.git repo
+git clone https://github.com/astabile/phpChallenge.git blog
 cd blog
 ```
 
